@@ -1,0 +1,27 @@
+html {
+  overflow-y: auto;
+}
+
+.v-expansion-panel-text__wrapper,
+.v-expansion-panel-title {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+a {
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: #90caf9;
+    text-decoration: none;
+  }
+
+  &:hover {
+    color: #42a5f5;
+  }
+}
+
+.heart-red {
+  color: #ff1744;
+}

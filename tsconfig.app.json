@@ -1,0 +1,37 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["virtual-components.d.ts", "src/**/*"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "dev-dist",
+    "public",
+    "src/**/__tests__/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": ".",
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "target": "esnext",
+    "useDefineForClassFields": true,
+    "allowSyntheticDefaultImports": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "isolatedModules": true,
+    "noUnusedLocals": true,
+    "sourceMap": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"],
+    "types": ["vite/client", "unplugin-fonts/client"],
+    "paths": {
+      "@/*": ["src/*"],
+      "@generators/*": ["src/components/generators/*"]
+    }
+  }
+}
