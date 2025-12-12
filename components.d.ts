@@ -15,6 +15,7 @@ declare module 'vue' {
     AccuracyVisualizerChip: typeof import('./src/components/AccuracyVisualizerChip.vue')['default']
     CarFoundButton: typeof import('./src/components/CarFoundButton.vue')['default']
     CheckButton: typeof import('./src/components/CheckButton.vue')['default']
+    CompassNorthOutlineIcon: typeof import('./src/components/CompassNorthOutlineIcon.vue')['default']
     MapView: typeof import('./src/components/MapView.vue')['default']
     ReleaseNotesItem: typeof import('./src/components/ReleaseNotesItem.vue')['default']
     ResetAppStateDialog: typeof import('./src/components/ResetAppStateDialog.vue')['default']

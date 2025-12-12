@@ -11,6 +11,13 @@
           <v-expansion-panels v-model="expanded">
             <release-notes-item
               is-current
+              version="v0.3.0"
+              :new-features="[
+                'Added compass',
+                'Added ability to rotate the map',
+              ]"
+            />
+            <release-notes-item
               version="v0.2.0"
               :new-features="['Added installability as PWA']"
             />

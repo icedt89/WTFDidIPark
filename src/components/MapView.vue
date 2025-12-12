@@ -26,6 +26,8 @@ import { watchImmediate, watchOnce } from '@vueuse/core'
 import L from 'leaflet'
 import { storeToRefs } from 'pinia'
 import { computed, shallowRef, useTemplateRef } from 'vue'
+// Rotate plugin
+import 'leaflet-rotate'
 
 interface Props {
   initialPosition: [x: number, y: number]
@@ -39,6 +41,10 @@ const props = withDefaults(defineProps<Props>(), {
   showAccuracy: true,
   showDistance: true,
 })
+
+const emit = defineEmits<{
+  (e: 'rotate', bearing: number): void
+}>()
 
 const { currentTheme, carPosition } = storeToRefs(useSettingsStore())
 const tileLayerSource = computed(() =>
@@ -208,7 +214,14 @@ watchOnce(
       return
     }
 
-    const m = (map.value = L.map(me, { zoomControl: false }))
+    const m = (map.value = L.map(me, {
+      zoomControl: false,
+      // Rotate plugin
+      rotate: true,
+      rotateControl: false,
+      touchRotate: true,
+      shiftKeyRotate: true,
+    }))
 
     mainTileLayer.addTo(m)
     carPositionMarker.addTo(m).setZIndexOffset(1)
@@ -220,6 +233,12 @@ watchOnce(
     if (props.initialPosition) {
       m.setView(props.initialPosition, props.initialZoom)
     }
+
+    m.on('rotate', () => {
+      const bearing = m.getBearing()
+
+      emit('rotate', bearing)
+    })
   },
   { flush: 'post' }
 )
@@ -230,6 +249,14 @@ function centerTo(position: Position, zoom: number = 19) {
   }
 
   map.value.setView(toCoordsPair(position), zoom)
+}
+
+function rotate(bearing: number) {
+  if (!map.value) {
+    return
+  }
+
+  map.value.setBearing(bearing)
 }
 
 function fitTo(positions: Position[]) {
@@ -245,5 +272,6 @@ function fitTo(positions: Position[]) {
 defineExpose({
   centerTo,
   fitTo,
+  rotate,
 })
 </script>

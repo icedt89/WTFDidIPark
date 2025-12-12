@@ -1,7 +1,7 @@
 import type { Position } from '@/common/types'
 import { watchImmediate } from '@vueuse/core'
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTheme } from 'vuetify'
 
 export type KnownTheme = 'light' | 'softDark'
@@ -13,6 +13,8 @@ export const useSettingsStore = defineStore(
 
     const currentTheme = ref<KnownTheme>('softDark')
     watchImmediate(currentTheme, changeTheme)
+
+    const isLightTheme = computed(() => currentTheme.value === 'light')
 
     const carPosition = ref<Position | null>(null)
 
@@ -31,6 +33,7 @@ export const useSettingsStore = defineStore(
       carPosition,
       showAccuracy,
       showDistance,
+      isLightTheme,
       reset,
     }
   },
