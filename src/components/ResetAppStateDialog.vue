@@ -1,5 +1,5 @@
 <template>
-  <v-dialog max-width="400">
+  <v-dialog max-width="400" :fullscreen="xs">
     <template #default="{ isActive }">
       <v-card title="Reset App">
         <v-card-text class="pb-0">
@@ -26,6 +26,9 @@
 <script setup lang="ts">
 import { useSettingsStore } from '@/stores/settings-store'
 import { computed, ref, type Ref } from 'vue'
+import { useDisplay } from 'vuetify'
+
+const { xs } = useDisplay()
 
 const shouldResetSettingsStore = ref(true)
 const { reset: resetSettingsStore } = useSettingsStore()
