@@ -1,15 +1,8 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": ["virtual-components.d.ts", "src/**/*"],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "dev-dist",
-    "public",
-    "src/**/__tests__/*"
-  ],
+  "exclude": ["node_modules", "dist", "dev-dist", "public"],
   "compilerOptions": {
-    "baseUrl": ".",
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "noEmit": true,
     "skipLibCheck": true,
@@ -36,8 +29,8 @@
       "leaflet-rotate"
     ],
     "paths": {
-      "@/*": ["src/*"],
-      "@generators/*": ["src/components/generators/*"]
+      "@/*": ["./src/*"],
+      "@generators/*": ["./src/components/generators/*"]
     }
   }
 }
