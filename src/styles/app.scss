@@ -1,5 +1,16 @@
-@use './vuetify3-regression.scss';
+// Vuetify
+@layer vuetify-core.reset {
+  ul {
+    padding: 0;
+    margin: 0;
+  }
 
+  h5 {
+    margin: 0;
+  }
+}
+
+// Other
 html {
   overflow-y: auto;
 }

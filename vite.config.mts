@@ -63,9 +63,6 @@ export default defineConfig(({ mode }) => {
       }),
       vuetify({
         autoImport: true,
-        styles: {
-          configFile: 'src/styles/app.scss',
-        },
       }),
       components(),
       viteFonts({

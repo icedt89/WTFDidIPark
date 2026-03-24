@@ -8,6 +8,7 @@
 import { aliases, mdi } from 'vuetify/iconsets/mdi-svg'
 import { md3 } from 'vuetify/blueprints'
 import 'vuetify/styles/main.sass'
+import '@/styles/app.scss'
 
 // Composables
 import { createVuetify } from 'vuetify'
