@@ -5,6 +5,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { VitePWA as vitePWA } from 'vite-plugin-pwa'
 import viteFonts from 'unplugin-fonts/vite'
 import { version } from './package.json'
+import { ViteMinifyPlugin } from 'vite-plugin-minify'
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -18,8 +19,8 @@ export const alias = {
 }
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => {
-  const isProduction = mode === 'production'
+export default defineConfig(({ mode, command }) => {
+  const isProductionBuild = mode === 'production' && command === 'build'
 
   return {
     plugins: [
@@ -28,7 +29,7 @@ export default defineConfig(({ mode }) => {
       }),
       vitePWA({
         registerType: 'autoUpdate',
-        devOptions: { enabled: !isProduction },
+        devOptions: { enabled: !isProductionBuild },
         manifest: {
           name: 'WTF did I park?',
           display: 'standalone',
@@ -64,6 +65,8 @@ export default defineConfig(({ mode }) => {
       vuetify({
         autoImport: true,
       }),
+      // Minify index.html
+      isProductionBuild && ViteMinifyPlugin(),
       components(),
       viteFonts({
         fontsource: {
@@ -83,14 +86,23 @@ export default defineConfig(({ mode }) => {
     },
     resolve: {
       alias,
-      extensions: ['.ts', '.vue'],
     },
     server: {
       port: 3006,
     },
-    esbuild: {
-      drop: isProduction ? ['console', 'debugger'] : undefined,
-      legalComments: 'none',
+    build: {
+      sourcemap: !isProductionBuild,
+      rolldownOptions: {
+        output: {
+          minify: {
+            compress: {
+              dropConsole: isProductionBuild,
+              dropDebugger: isProductionBuild,
+            },
+          },
+          comments: !isProductionBuild,
+        },
+      },
     },
   }
 })
