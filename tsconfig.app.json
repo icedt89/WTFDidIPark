@@ -1,36 +1,41 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["virtual-components.d.ts", "src/**/*"],
+  "include": ["components.d.ts", "virtual-components.d.ts", "src/**/*.ts"],
   "exclude": ["node_modules", "dist", "dev-dist", "public"],
   "compilerOptions": {
+    "incremental": true,
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
     "noEmit": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+
     "target": "esnext",
-    "useDefineForClassFields": true,
-    "allowSyntheticDefaultImports": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
     "module": "esnext",
     "moduleResolution": "bundler",
-    "strict": true,
-    "strictNullChecks": true,
-    "allowJs": true,
-    "isolatedModules": true,
-    "noUnusedLocals": true,
-    "sourceMap": false,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "lib": ["esnext", "dom"],
     "types": [
       "vite-plugin-pwa/vue",
       "vite/client",
       "unplugin-fonts/client",
       "leaflet",
-      "leaflet-rotate"
+      "leaflet-rotate",
+      "vuetify"
     ],
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "noImplicitReturns": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "verbatimModuleSyntax": true,
+
     "paths": {
-      "@/*": ["./src/*"],
-      "@generators/*": ["./src/components/generators/*"]
+      "@/*": ["./src/*"]
     }
   }
 }

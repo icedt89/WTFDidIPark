@@ -13,9 +13,6 @@ import { fileURLToPath, URL } from 'node:url'
 
 export const alias = {
   '@': fileURLToPath(new URL('./src', import.meta.url)),
-  '@generators': fileURLToPath(
-    new URL('./src/components/generators', import.meta.url)
-  ),
 }
 
 // https://vitejs.dev/config/

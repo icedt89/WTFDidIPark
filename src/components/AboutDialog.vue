@@ -14,6 +14,10 @@
                 <v-expansion-panels v-model="expanded">
                   <release-notes-item
                     is-current
+                    version="v0.3.9"
+                    :bugfixes="['The menu now closes when a dialog opens']"
+                  />
+                  <release-notes-item
                     version="v0.3.0"
                     :new-features="[
                       'Added compass',

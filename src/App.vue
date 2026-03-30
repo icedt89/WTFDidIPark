@@ -1,4 +1,7 @@
 <template>
+  <about-dialog v-model="isAboutDialogOpen" />
+  <reset-app-state-dialog v-model="isResetAppStateDialogOpen" />
+
   <v-app>
     <v-app-bar>
       <v-app-bar-title>
@@ -17,18 +20,21 @@
             <app-main-menu>
               <switch-theme-list-item />
               <v-divider />
-              <v-list-item title="Reset App">
-                <reset-app-state-dialog activator="parent" />
-
+              <v-list-item
+                title="Reset App"
+                @click="isResetAppStateDialogOpen = true"
+              >
                 <template #prepend>
                   <!-- Reserve space for item without icon -->
                   <div style="width: 44px"></div>
                 </template>
               </v-list-item>
               <v-divider />
-              <v-list-item :prepend-icon="mdiInformationOutline" title="About">
-                <about-dialog activator="parent" />
-              </v-list-item>
+              <v-list-item
+                :prepend-icon="mdiInformationOutline"
+                title="About"
+                @click="isAboutDialogOpen = true"
+              />
             </app-main-menu>
           </template>
         </v-menu>
@@ -198,6 +204,9 @@ const canCenterMyPosition = computed(() => !!map.value && !!myPosition.value)
 const canCenterDistance = computed(() => !!map.value && distance.value !== null)
 
 const currentBearing = ref<number>(0)
+
+const isResetAppStateDialogOpen = ref(false)
+const isAboutDialogOpen = ref(false)
 
 function rotateNorth() {
   if (!map.value) {

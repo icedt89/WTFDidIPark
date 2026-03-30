@@ -23,7 +23,18 @@ import { useMyPosition } from '@/common/my-position'
 import { toCoordsPair, toCoordsPairs, type Position } from '@/common/types'
 import { useSettingsStore } from '@/stores/settings-store'
 import { watchImmediate, watchOnce } from '@vueuse/core'
-import L from 'leaflet'
+import {
+  latLngBounds,
+  Map,
+  TileLayer,
+  Marker,
+  map as leafletMap,
+  icon,
+  marker,
+  tileLayer,
+  polyline,
+  circle,
+} from 'leaflet'
 import { storeToRefs } from 'pinia'
 import { computed, shallowRef, useTemplateRef } from 'vue'
 // Rotate plugin
@@ -64,9 +75,9 @@ const distanceInMeters = computed(() => {
 })
 
 const mapElement = useTemplateRef('mapElement')
-const map = shallowRef<L.Map | null>(null)
+const map = shallowRef<Map | null>(null)
 
-const mainTileLayer: L.TileLayer = L.tileLayer(
+const mainTileLayer: TileLayer = tileLayer(
   'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
   {
     attribution:
@@ -77,9 +88,9 @@ watchImmediate(tileLayerSource, (tls) => {
   mainTileLayer.setUrl(tls)
 })
 
-const myPositionMarker: L.Marker = L.marker([0, 0], {
+const myPositionMarker: Marker = marker([0, 0], {
   opacity: 0,
-  icon: L.icon({
+  icon: icon({
     iconUrl: 'marker-icon-me.png',
     // These defaults where taken from Leaflet internals, because the custom markers are based on the default Leaflet markers.
     iconSize: [25, 41],
@@ -104,9 +115,9 @@ watchImmediate(myPosition, (mp) => {
   myPositionMarker.setOpacity(1)
 })
 
-const carPositionMarker: L.Marker = L.marker([0, 0], {
+const carPositionMarker: L.Marker = marker([0, 0], {
   opacity: 0,
-  icon: L.icon({
+  icon: icon({
     iconUrl: 'marker-icon-my-car.png',
     // These defaults where taken from Leaflet internals, because the custom markers are based on the default Leaflet markers.
     iconSize: [25, 41],
@@ -131,7 +142,7 @@ watchImmediate(carPosition, (cp) => {
   carPositionMarker.setOpacity(1)
 })
 
-const distanceLine: L.Polyline = L.polyline([], {
+const distanceLine: L.Polyline = polyline([], {
   opacity: 0,
   color: '#FF2121',
   weight: 3,
@@ -155,7 +166,7 @@ watchImmediate(
   }
 )
 
-const myPositionAccuracyCircle: L.Circle = L.circle([0, 0], {
+const myPositionAccuracyCircle: L.Circle = circle([0, 0], {
   radius: 0,
   opacity: 0,
   color: '#3178c6',
@@ -181,7 +192,7 @@ watchImmediate([myPosition, () => props.showAccuracy], ([mp, sa]) => {
   })
 })
 
-const carPositionAccuracyCircle: L.Circle = L.circle([0, 0], {
+const carPositionAccuracyCircle: L.Circle = circle([0, 0], {
   radius: 0,
   opacity: 0,
   color: '#FF2121',
@@ -214,7 +225,7 @@ watchOnce(
       return
     }
 
-    const m = (map.value = L.map(me, {
+    const m = (map.value = leafletMap(me, {
       zoomControl: false,
       // Rotate plugin
       rotate: true,
@@ -264,7 +275,7 @@ function fitTo(positions: Position[]) {
     return
   }
 
-  map.value.fitBounds(L.latLngBounds(toCoordsPairs(positions)), {
+  map.value.fitBounds(latLngBounds(toCoordsPairs(positions)), {
     padding: [20, 20],
   })
 }

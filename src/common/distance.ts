@@ -3,7 +3,7 @@ import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useMyPosition } from '@/common/my-position'
 import { toCoordsPair } from '@/common/types'
-import L from 'leaflet'
+import { latLng } from 'leaflet'
 
 export function useMyCarDistance() {
   const { carPosition } = storeToRefs(useSettingsStore())
@@ -14,8 +14,8 @@ export function useMyCarDistance() {
       return null
     }
 
-    return L.latLng(toCoordsPair(myPosition.value)).distanceTo(
-      L.latLng(toCoordsPair(carPosition.value))
+    return latLng(toCoordsPair(myPosition.value)).distanceTo(
+      latLng(toCoordsPair(carPosition.value))
     )
   })
 
