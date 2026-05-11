@@ -17,7 +17,6 @@ declare module 'vue' {
     CheckButton: typeof import('./src/components/CheckButton.vue')['default']
     CompassNorthOutlineIcon: typeof import('./src/components/CompassNorthOutlineIcon.vue')['default']
     MapView: typeof import('./src/components/MapView.vue')['default']
-    ReleaseNotesItem: typeof import('./src/components/ReleaseNotesItem.vue')['default']
     ResetAppStateDialog: typeof import('./src/components/ResetAppStateDialog.vue')['default']
     SetCarPositionButton: typeof import('./src/components/SetCarPositionButton.vue')['default']
     SwitchThemeListItem: typeof import('./src/components/SwitchThemeListItem.vue')['default']

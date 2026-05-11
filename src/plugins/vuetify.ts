@@ -83,16 +83,6 @@ export default createVuetify({
       color: 'rgb(var(--v-theme-background))',
       rounded: 'xs',
     },
-    VExpansionPanels: {
-      static: true,
-      multiple: true,
-    },
-    VExpansionPanel: {
-      style: {
-        'background-color': 'rgb(var(--v-theme-background))',
-        border: '1px solid rgb(var(--v-border-color), var(--v-border-opacity))',
-      },
-    },
     VCheckbox: {
       color: 'primary',
       hideDetails: true,
