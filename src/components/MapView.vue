@@ -1,5 +1,5 @@
 <template>
-  <div class="map w-100 fill-height" ref="mapElement" />
+  <div class="map fill-height" ref="mapElement" />
 </template>
 
 <style lang="scss">

@@ -1,9 +1,9 @@
 <template>
-  <v-dialog max-width="400" :fullscreen="xs">
+  <v-dialog :max-width="400" :fullscreen="xs">
     <template #default="{ isActive }">
       <v-card title="Reset App">
-        <v-card-text class="pb-0">
-          <div class="mb-3">This will reset the App to their defaults.</div>
+        <v-card-text>
+          This will reset the App to their defaults.
 
           <v-checkbox
             label="Settings"
@@ -12,7 +12,7 @@
           />
         </v-card-text>
         <v-card-actions>
-          <close-dialog-button
+          <v-btn
             text="Reset"
             :disabled="!shouldResetAny"
             @click="resetAppState(isActive)"

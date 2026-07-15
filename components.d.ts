@@ -13,12 +13,12 @@ declare module 'vue' {
   export interface GlobalComponents {
     AboutDialog: typeof import('./src/components/AboutDialog.vue')['default']
     AccuracyVisualizerChip: typeof import('./src/components/AccuracyVisualizerChip.vue')['default']
-    CarFoundButton: typeof import('./src/components/CarFoundButton.vue')['default']
-    CheckButton: typeof import('./src/components/CheckButton.vue')['default']
+    CarFoundBtn: typeof import('./src/components/CarFoundBtn.vue')['default']
+    CheckBtn: typeof import('./src/components/CheckBtn.vue')['default']
     CompassNorthOutlineIcon: typeof import('./src/components/CompassNorthOutlineIcon.vue')['default']
     MapView: typeof import('./src/components/MapView.vue')['default']
     ResetAppStateDialog: typeof import('./src/components/ResetAppStateDialog.vue')['default']
-    SetCarPositionButton: typeof import('./src/components/SetCarPositionButton.vue')['default']
+    SetCarPositionBtn: typeof import('./src/components/SetCarPositionBtn.vue')['default']
     SwitchThemeListItem: typeof import('./src/components/SwitchThemeListItem.vue')['default']
   }
 }

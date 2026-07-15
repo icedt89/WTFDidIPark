@@ -4,6 +4,7 @@
     text="Remember current location"
     :variant="!!myPosition ? 'elevated' : 'tonal'"
     @click="setCarPosition"
+    color="primary"
   />
 </template>
 

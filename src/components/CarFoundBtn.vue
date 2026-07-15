@@ -3,6 +3,7 @@
     text="I`ve found my car"
     variant="elevated"
     @click="resetCarPosition"
+    color="primary"
   />
 </template>
 

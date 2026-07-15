@@ -14,12 +14,7 @@ import { VBtn } from 'vuetify/components/VBtn'
 import type { IconValue } from 'vuetify/lib/composables/icons.d.ts'
 
 type ButtonVariant =
-  | 'elevated'
-  | 'flat'
-  | 'outlined'
-  | 'plain'
-  | 'text'
-  | 'tonal'
+  'elevated' | 'flat' | 'outlined' | 'plain' | 'text' | 'tonal'
 type VBtnProps = InstanceType<typeof VBtn>['$props']
 
 interface Props {

@@ -3,46 +3,43 @@
   <reset-app-state-dialog v-model="isResetAppStateDialogOpen" />
 
   <v-app>
-    <v-app-bar>
-      <v-app-bar-title>
-        <app-icon-avatar>
-          <v-icon :icon="mdiCar" size="30" />
-        </app-icon-avatar>
-        WTF did I park?
-      </v-app-bar-title>
-      <template #append>
-        <v-menu>
-          <template #activator="{ props }">
-            <v-btn :icon="mdiDotsVertical" v-bind="props" />
-          </template>
+    <v-app-bar class="border-b-sm px-2">
+      <v-avatar border :size="44" variant="text" class="ml-2">
+        <v-icon :icon="mdiCar" :size="30" />
+      </v-avatar>
+      <v-app-bar-title text="WTF did I park?" class="ml-3" />
 
-          <template #default>
-            <app-main-menu>
-              <switch-theme-list-item />
-              <v-divider />
-              <v-list-item
-                title="Reset App"
-                @click="isResetAppStateDialogOpen = true"
-              >
-                <template #prepend>
-                  <!-- Reserve space for item without icon -->
-                  <div style="width: 44px"></div>
-                </template>
-              </v-list-item>
-              <v-divider />
-              <v-list-item
-                :prepend-icon="mdiInformationOutline"
-                title="About"
-                @click="isAboutDialogOpen = true"
-              />
-            </app-main-menu>
-          </template>
-        </v-menu>
-      </template>
+      <v-menu>
+        <template #activator="{ props }">
+          <v-btn :icon="mdiDotsVertical" v-bind="props" />
+        </template>
+
+        <template #default>
+          <v-list class="bg-background py-0" density="compact" border slim>
+            <switch-theme-list-item />
+            <v-divider />
+            <v-list-item
+              title="Reset App"
+              @click="isResetAppStateDialogOpen = true"
+            >
+              <template #prepend>
+                <!-- Reserve space for item without icon -->
+                <div style="width: 44px" />
+              </template>
+            </v-list-item>
+            <v-divider />
+            <v-list-item
+              :prepend-icon="mdiInformationOutline"
+              title="About"
+              @click="isAboutDialogOpen = true"
+            />
+          </v-list>
+        </template>
+      </v-menu>
     </v-app-bar>
 
     <v-main>
-      <v-container class="fill-height pa-0 position-relative">
+      <v-container class="fill-height pa-0 position-relative" fluid>
         <map-view
           :initial-position="[52.52, 13.405]"
           :show-accuracy="showAccuracy"
@@ -53,7 +50,7 @@
         />
 
         <div
-          class="position-absolute top-0 left-0 mt-1 ml-1 d-flex flex-column"
+          class="position-absolute top-0 left-0 mt-2 ml-2 d-flex flex-column"
           style="z-index: 1"
         >
           <v-btn
@@ -84,7 +81,7 @@
         </div>
 
         <div
-          class="position-absolute top-0 right-0 mt-2 mr-2 d-flex flex-column ga-2"
+          class="position-absolute top-0 right-0 mt-2 mr-3 d-flex flex-column ga-2"
           style="z-index: 1"
         >
           <v-btn
@@ -93,6 +90,7 @@
             variant="elevated"
             density="compact"
             size="x-large"
+            color="primary"
             v-tooltip="'Center my position'"
             @click="centerMyPosition"
           />
@@ -103,10 +101,11 @@
             variant="elevated"
             density="compact"
             size="x-large"
+            color="primary"
             v-tooltip="'Center distance'"
             @click="centerDistance"
           />
-          <check-button
+          <check-btn
             v-model:is-checked="showAccuracy"
             :disabled="isGeolocationPermissionDenied"
             :icon="mdiMapMarkerCircle"
@@ -114,7 +113,7 @@
             size="x-large"
             v-tooltip="'Show accuracy'"
           />
-          <check-button
+          <check-btn
             v-model:is-checked="showDistance"
             :disabled="isGeolocationPermissionDenied"
             :icon="mdiMapMarkerDistance"
@@ -125,12 +124,11 @@
         </div>
 
         <div
-          align="center"
-          class="position-absolute bottom-0 w-100 mb-5 mx-2"
+          class="position-absolute bottom-0 w-100 mb-5 mx-2 text-center"
           style="z-index: 1"
         >
-          <set-car-position-button v-if="!carPosition" />
-          <car-found-button v-else />
+          <set-car-position-btn v-if="!carPosition" />
+          <car-found-btn v-else />
         </div>
 
         <v-overlay
@@ -180,17 +178,17 @@ import AboutDialog from '@/components/AboutDialog.vue'
 import ResetAppStateDialog from '@/components/ResetAppStateDialog.vue'
 import SwitchThemeListItem from '@/components/SwitchThemeListItem.vue'
 import MapView from '@/components/MapView.vue'
-import SetCarPositionButton from '@/components/SetCarPositionButton.vue'
+import SetCarPositionBtn from '@/components/SetCarPositionBtn.vue'
 import { computed, ref, useTemplateRef, watch } from 'vue'
 import { useMyPosition } from '@/common/my-position'
-import CheckButton from '@/components/CheckButton.vue'
+import CheckBtn from '@/components/CheckBtn.vue'
 import { useSettingsStore } from '@/stores/settings-store'
 import { storeToRefs } from 'pinia'
 import { useMyHeading } from '@/common/my-heading'
 import { useMyCarDistance } from '@/common/distance'
 import AccuracyVisualizerChip from '@/components/AccuracyVisualizerChip.vue'
-import CarFoundButton from '@/components/CarFoundButton.vue'
-import CompassNorthOutlineIcon from './components/CompassNorthOutlineIcon.vue'
+import CarFoundBtn from '@/components/CarFoundBtn.vue'
+import CompassNorthOutlineIcon from '@/components/CompassNorthOutlineIcon.vue'
 
 const map = useTemplateRef<typeof MapView>('map')
 

@@ -1,6 +1,6 @@
 import { useGeolocation, usePermission } from '@vueuse/core'
 import { computed } from 'vue'
-import { isConsideredNull, type Position } from './types'
+import { isConsideredNull, type Position } from '@/common/types'
 
 export function useMyPosition() {
   const { coords } = useGeolocation()
