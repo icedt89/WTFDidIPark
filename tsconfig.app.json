@@ -1,6 +1,11 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["components.d.ts", "virtual-components.d.ts", "src/**/*.ts"],
+  "include": [
+    "components.d.ts",
+    "virtual-components.d.ts",
+    "src/**/*.ts",
+    "src/**/*.vue"
+  ],
   "exclude": ["node_modules", "dist", "dev-dist", "public"],
   "compilerOptions": {
     "incremental": true,
@@ -15,8 +20,6 @@
       "vite-plugin-pwa/vue",
       "vite/client",
       "unplugin-fonts/client",
-      "leaflet",
-      "leaflet-rotate",
       "vuetify"
     ],
 

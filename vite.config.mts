@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 import { VitePWA as vitePWA } from 'vite-plugin-pwa'
 import viteFonts from 'unplugin-fonts/vite'
-import { version } from './package.json'
+import packageJson from './package.json' with { type: 'json' }
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
@@ -75,7 +75,7 @@ export default defineConfig(({ mode, command }) => {
       }),
     ],
     define: {
-      __APP_VERSION__: JSON.stringify(version),
+      __APP_VERSION__: JSON.stringify(packageJson.version),
     },
     resolve: {
       alias,

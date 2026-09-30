@@ -41,7 +41,7 @@
     <v-main>
       <v-container class="fill-height pa-0 position-relative" fluid>
         <map-view
-          :initial-position="[52.52, 13.405]"
+          :initial-position="[13.405, 52.52]"
           :show-accuracy="showAccuracy"
           :show-distance="showDistance"
           style="z-index: 0"

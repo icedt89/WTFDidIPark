@@ -1,8 +1,12 @@
-import { useGeolocation, usePermission } from '@vueuse/core'
+import {
+  createSharedComposable,
+  useGeolocation,
+  usePermission,
+} from '@vueuse/core'
 import { computed } from 'vue'
 import { isConsideredNull, type Position } from '@/common/types'
 
-export function useMyPosition() {
+export const useMyPosition = createSharedComposable(() => {
   const { coords } = useGeolocation()
   const geolocationPermission = usePermission('geolocation')
 
@@ -26,4 +30,4 @@ export function useMyPosition() {
     myPosition,
     isGeolocationPermissionDenied,
   }
-}
+})

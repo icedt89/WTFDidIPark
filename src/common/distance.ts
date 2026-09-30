@@ -2,8 +2,7 @@ import { useSettingsStore } from '@/stores/settings-store'
 import { storeToRefs } from 'pinia'
 import { computed } from 'vue'
 import { useMyPosition } from '@/common/my-position'
-import { toCoordsPair } from '@/common/types'
-import { latLng } from 'leaflet'
+import { LngLat } from 'maplibre-gl'
 
 export function useMyCarDistance() {
   const { carPosition } = storeToRefs(useSettingsStore())
@@ -14,8 +13,11 @@ export function useMyCarDistance() {
       return null
     }
 
-    return latLng(toCoordsPair(myPosition.value)).distanceTo(
-      latLng(toCoordsPair(carPosition.value))
+    return new LngLat(
+      myPosition.value.longitude,
+      myPosition.value.latitude
+    ).distanceTo(
+      new LngLat(carPosition.value.longitude, carPosition.value.latitude)
     )
   })
 

@@ -30,10 +30,24 @@ Using WTF did I park? is a breeze. Just open the application, grant location per
 
 - **Vue.js:** For a reactive and efficient user interface.
 - **Vuetify:** A stunning Material Design component framework.
-- **Leaflet:** For interactive maps and geolocation features.
+- **MapLibre GL JS:** For interactive OpenStreetMap vector maps with custom light and dark styles.
 - **TypeScript:** For robust and scalable code.
 - **Vite:** For a blazing-fast development and build experience.
 - **Pinia:** For state management.
+
+## Map styles and data
+
+The map uses the public OpenStreetMap Shortbread v1 vector tiles without an API key
+or account. Colors, layers and labels for both themes are defined in
+`src/common/map-style.ts`. Labels use the locally bundled Roboto font; no external
+font or sprite service is required. MapLibre requires WebGL support.
+
+The public tile service is subject to the
+[OSM vector tile usage policy](https://operations.osmfoundation.org/policies/vector/)
+and provides no availability guarantee. Tiles are loaded for interactive viewing
+and use normal HTTP caching; the PWA does not prefetch maps for offline use.
+To change the tile provider, update the `osm` source in the style and use a provider
+compatible with the Shortbread v1 schema (or adapt the style's layers).
 
 ## 🤝 Contributing
 

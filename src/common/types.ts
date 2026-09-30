@@ -4,14 +4,6 @@ export type Position = {
   accuracy: number
 }
 
-export function toCoordsPairs(positions: Position[]): [x: number, y: number][] {
-  return positions.map((p) => toCoordsPair(p))
-}
-
-export function toCoordsPair(position: Position): [x: number, y: number] {
-  return [position.latitude, position.longitude]
-}
-
 interface GeolocationCoordinates {
   latitude: number
   longitude: number
